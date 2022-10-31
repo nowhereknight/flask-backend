@@ -8,6 +8,12 @@ from sqlalchemy import exc
 from flask_cors import cross_origin
 
 
+@api.after_request
+def add_headers(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+
+
 @api.route('/companies/')
 @cross_origin()
 def get_companies():
