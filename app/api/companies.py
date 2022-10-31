@@ -5,6 +5,7 @@ from . import api
 from ..responses import bad_request, success, not_found, conflict
 from ..exceptions import ValidationError
 from sqlalchemy import exc
+from flask_cors import CORS
 
 
 @api.route('/companies/')
