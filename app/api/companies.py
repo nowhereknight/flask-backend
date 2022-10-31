@@ -8,6 +8,7 @@ from sqlalchemy import exc
 
 
 @api.route('/companies/')
+@cross_origin()
 def get_companies():
     companies = Company.query.filter(Company.is_active)
     return success({
@@ -16,6 +17,7 @@ def get_companies():
 
 
 @api.route('/companies/<uuid>')
+@cross_origin()
 def get_company(uuid):
     try:
         company = Company.query.get(uuid)
@@ -29,9 +31,11 @@ def get_company(uuid):
 
 
 @api.route('/companies/', methods=['POST'])
+@cross_origin()
 def new_company():
     try:
         company = Company.create_from_json(request.json)
+        print("company",company.to_json())
         db.session.add(company)
         db.session.commit()
         return success(company.to_json(), 201)
@@ -43,6 +47,7 @@ def new_company():
 
 
 @api.route('/companies/<uuid>', methods=['PUT'])
+@cross_origin()
 def edit_company(uuid):
     try:
         company = Company.query.get(uuid)
@@ -62,6 +67,7 @@ def edit_company(uuid):
 
 
 @api.route('/companies/<uuid>',methods=['DELETE'])
+@cross_origin()
 def del_company(uuid):
     try:
         company = Company.query.get(uuid)
