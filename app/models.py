@@ -96,7 +96,7 @@ class Company(db.Model):
     description = db.Column(db.Text)
     symbol = db.Column(db.Text)
     market_values = db.Column(db.ARRAY(db.Integer))
-    is_active = db.Column(db.Boolean, default=False)
+    is_active = db.Column(db.Boolean, default=True)
 
 
     def __init__(self, data):
